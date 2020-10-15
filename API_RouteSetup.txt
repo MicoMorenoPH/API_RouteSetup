@@ -1,0 +1,40 @@
+Source :  https://stackoverflow.com/questions/9499794/single-controller-	  with-multiple-get-methods-in-asp-net-web-api
+
+API ROUTE TO ENABLE MULTIPLE METHOD IN ONE API CONTROLLER
+
+
+ config.Routes.MapHttpRoute("DefaultApiWithId", "Api/{controller}/{id}", new { id = RouteParameter.Optional }, new { id = @"\d+" });
+            config.Routes.MapHttpRoute("DefaultApiWithAction", "Api/{controller}/{action}");
+            config.Routes.MapHttpRoute("DefaultApiGet", "Api/{controller}", new { action = "Get" }, new { httpMethod = new System.Web.Http.Routing.HttpMethodConstraint(httpMethod.Get) });
+            config.Routes.MapHttpRoute("DefaultApiPost", "Api/{controller}", new { action = "Post" }, new { httpMethod = new HttpMethodConstraint(HttpMethod.Post) });
+
+
+public class TestController : ApiController
+{
+    public string Get()
+    {
+        return string.Empty;
+    }
+
+    public string Get(int id)
+    {
+        return string.Empty;
+    }
+
+    public string GetAll()
+    {
+        return string.Empty;
+    }
+
+    public void Post([FromBody]string value)
+    {
+    }
+
+    public void Put(int id, [FromBody]string value)
+    {
+    }
+
+    public void Delete(int id)
+    {
+    }
+}
