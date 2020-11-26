@@ -7,6 +7,30 @@ API ROUTE TO ENABLE MULTIPLE METHOD IN ONE API CONTROLLER
             config.Routes.MapHttpRoute("DefaultApiWithAction", "Api/{controller}/{action}");
             config.Routes.MapHttpRoute("DefaultApiGet", "Api/{controller}", new { action = "Get" }, new { httpMethod = new System.Web.Http.Routing.HttpMethodConstraint(httpMethod.Get) });
             config.Routes.MapHttpRoute("DefaultApiPost", "Api/{controller}", new { action = "Post" }, new { httpMethod = new HttpMethodConstraint(HttpMethod.Post) });
+            
+11/26/2020 - updated
+config.Routes.MapHttpRoute(
+     name: "DefaultApiWithId",
+     routeTemplate: "api/{controller}/{id}",
+     defaults: new { id = RouteParameter.Optional }
+ );
+
+ config.Routes.MapHttpRoute(
+     name: "DefaultApiWithAction",
+     routeTemplate: "api/{controller}/{action}"
+ );
+
+ config.Routes.MapHttpRoute(
+     name: "DefaultApiGet",
+     routeTemplate: "api/{controller}",
+     defaults: new { action = "Get" }
+ );
+
+ config.Routes.MapHttpRoute(
+     name: "DefaultApiPost",
+     routeTemplate: "api/{controller}",
+     defaults: new { action = "Post" }
+ );
 
 
 public class TestController : ApiController
